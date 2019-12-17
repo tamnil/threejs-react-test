@@ -4,11 +4,15 @@ import React from "react";
 /* eslint-disable */
 
 function initSensor() {
-  sensor = new AbsoluteOrientationSensor({ frequency: 60 });
-  sensor.onreading = () => model.quaternion.fromArray(sensor.quaternion);
+let   sensor = new AbsoluteOrientationSensor({ frequency: 60 });
+sensor.onreading = () =>{
+console.log('quaternion read',sensor.quaternion)
+model.quaternion.fromArray(sensor.quaternion);
+
+}
   sensor.onerror = event => {
     if (event.error.name == "NotReadableError") {
-      console.log("Sensor is not available.");
+      console.log("Sensor is not available.",event.error.message);
     }
   };
   sensor.start();
@@ -17,6 +21,7 @@ function initSensor() {
 
 console.log('here')
 
+console.log(initSensor())
 
 class Sensors extends React.Component {
   constructor() {
