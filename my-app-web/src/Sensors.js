@@ -1,7 +1,8 @@
+import React from "react";
+
+
 /* eslint-disable */
-const sensorAbs = new AbsoluteOrientationSensor();
-sensorAbs.start();
-console.log(sensorAbs)
+
 function initSensor() {
   sensor = new AbsoluteOrientationSensor({ frequency: 60 });
   sensor.onreading = () => model.quaternion.fromArray(sensor.quaternion);
@@ -14,5 +15,19 @@ function initSensor() {
   return sensor;
 }
 
+console.log('here')
 
 
+class Sensors extends React.Component {
+  constructor() {
+    super();
+    this.state = {color: "red"};
+  }
+  render() {
+    return <h2>Hi, I am a sensor!</h2>;
+  }
+}
+
+
+
+export default  Sensors
