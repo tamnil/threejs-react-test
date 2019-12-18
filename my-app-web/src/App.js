@@ -4,10 +4,6 @@ import Sensors from "./Sensors";
 import * as THREE from "three";
 import * as mqtt from './MqttClient'
 
-import * as Paho from 'paho-mqtt';
-
-
-console.log(Paho)
 
 function App() {
   return (
