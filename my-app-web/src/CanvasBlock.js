@@ -1,4 +1,3 @@
-
 import React from "react";
 import * as THREE from "three";
 
@@ -16,15 +15,15 @@ class CanvasBlock extends React.Component {
 
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.shadowMap.enabled = true;
-renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     document.body.appendChild(renderer.domElement);
 
     var geometry = new THREE.BoxGeometry(7, 3, 1);
     var material = new THREE.MeshStandardMaterial({ color: 0x00ffff });
     var cube = new THREE.Mesh(geometry, material);
-cube.castShadow = true
-cube.receiveShadow = true
+    cube.castShadow = true;
+    cube.receiveShadow = true;
     scene.add(cube);
 
     camera.position.z = 20;
@@ -57,61 +56,65 @@ cube.receiveShadow = true
     scene.add(line);
     scene.add(line1);
 
-var dir = new THREE.Vector3( 60, -160, 60 );
+    var dir = new THREE.Vector3(60, -160, 60);
 
-//normalize the direction vector (convert to vector of length 1)
-dir.normalize();
+    //normalize the direction vector (convert to vector of length 1)
+    dir.normalize();
 
-var origin = new THREE.Vector3( 0, 0, 0 );
-var length = 10;
-var hex = 0xffff00;
+    var origin = new THREE.Vector3(0, 0, 0);
+    var length = 10;
+    var hex = 0xffff00;
 
-var arrowHelper = new THREE.ArrowHelper( dir, origin, length, hex );
-scene.add( arrowHelper );
+    var arrowHelper = new THREE.ArrowHelper(dir, origin, length, hex);
+    scene.add(arrowHelper);
 
-var radius = 10;
-var radials = 16;
-var circles = 8;
-var divisions = 64;
+    var radius = 10;
+    var radials = 16;
+    var circles = 8;
+    var divisions = 64;
 
-var helper = new THREE.PolarGridHelper( radius, radials, circles, divisions );
-scene.add( helper );
+    var helper = new THREE.PolarGridHelper(radius, radials, circles, divisions);
+    scene.add(helper);
 
+    var geometry = new THREE.BoxBufferGeometry(1, 1, 1);
+    var material = new THREE.MeshStandardMaterial({ color: 0x555555 });
 
+    var cubeA = new THREE.Mesh(geometry, material);
+    cubeA.position.set(10, 10, 0);
 
-var geometry = new THREE.BoxBufferGeometry( 1, 1, 1 );
-var material = new THREE.MeshStandardMaterial( {color: 0x555555} );
+    var cubeB = new THREE.Mesh(geometry, material);
+    cubeB.position.set(-10, -10, 0);
 
-var cubeA = new THREE.Mesh( geometry, material );
-cubeA.position.set( 10, 10, 0 );
+    cubeA.castShadow = true;
+    cubeA.receiveShadow = true;
+    cubeB.castShadow = true;
+    cubeB.receiveShadow = true;
 
-var cubeB = new THREE.Mesh( geometry, material );
-cubeB.position.set( -10, -10, 0 );
+    cubeB.translateX(10);
+    //create a group and add the two cubes
+    //These cubes can now be rotated / scaled etc as a group
+    var group = new THREE.Group();
+    group.add(cubeA);
+    group.add(cubeB);
+    group.castShadow = true;
+    group.receiveShadow = true;
 
-cubeA.castShadow = true
-cubeA.receiveShadow = true
-cubeB.castShadow = true
-cubeB.receiveShadow = true
-//create a group and add the two cubes
-//These cubes can now be rotated / scaled etc as a group
-var group = new THREE.Group();
-group.add( cubeA );
-group.add( cubeB );
-group.castShadow = true
-group.receiveShadow = true
+    scene.add(group);
 
-scene.add( group );
+    var pointLight = new THREE.PointLight(0xffffff, 1, 100);
+    pointLight.position.set(10, 10, 10);
+    pointLight.castShadow = true;
+    pointLight.receiveShadow = false;
+    scene.add(pointLight);
 
-var pointLight = new THREE.PointLight( 0xffffff, 1, 100 );
-pointLight.position.set( 10, 10, 10 );
-pointLight.castShadow = true
-pointLight.receiveShadow = false
-scene.add( pointLight );
+    var pivotCubeB = new THREE.Group();
+    scene.add(pivotCubeB);
+    pivotCubeB.add(cubeB);
+    pivotCubeB.translateX(20);
 
-
-var sphereSize = 1;
-var pointLightHelper = new THREE.PointLightHelper( pointLight, sphereSize );
-scene.add( pointLightHelper );
+    var sphereSize = 1;
+    var pointLightHelper = new THREE.PointLightHelper(pointLight, sphereSize);
+    scene.add(pointLightHelper);
 
     var animate = function() {
       requestAnimationFrame(animate);
@@ -120,9 +123,13 @@ scene.add( pointLightHelper );
       cube.rotation.y += 0.01;
       line.rotation.x += 0.01;
       line.rotation.y += 0.01;
-helper.rotation.x += 0.01
+      helper.rotation.x += 0.01;
 
-group.rotation.x += .01
+      // group.rotation.x += .01
+      cubeA.rotation.x += 0.1;
+      pivotCubeB.rotation.x += 0.02;
+      cubeB.rotation.x += 0.1;
+
       // plane.rotation.y += 0.04;
 
       renderer.render(scene, camera);

@@ -5,6 +5,12 @@ Use HTTPS  to work with websensors and sockets
 
 mosquito-mqtt included in docker-compose
 
+Run with:
+
+npm run start
+
+or
+HTTPS=true npm run start
 
 
 ## bugs
