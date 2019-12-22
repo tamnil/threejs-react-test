@@ -1,6 +1,8 @@
 import React from "react";
 import * as THREE from "three";
-import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+
+import {gimbal} from "./3d/helpers/gimbal"
 // const THREE = require("three");
 
 class CanvasBlock extends React.Component {
@@ -18,7 +20,7 @@ class CanvasBlock extends React.Component {
     );
     camera.position.z = 50;
 
-//
+    //
     //renderer:
 
     var renderer = new THREE.WebGLRenderer();
@@ -28,7 +30,7 @@ class CanvasBlock extends React.Component {
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
 
-var controls = new OrbitControls( camera, renderer.domElement );
+    var controls = new OrbitControls(camera, renderer.domElement);
     //ambient light
 
     var light = new THREE.AmbientLight(0x888888); // soft white light
@@ -57,27 +59,11 @@ var controls = new OrbitControls( camera, renderer.domElement );
     var hex = 0xffff00;
 
     var arrowHelper = new THREE.ArrowHelper(dir, origin, length, hex);
-
-    const polarHelper = () => {
-      var radius = 10;
-      var radials = 16;
-      var circles = 8;
-      var divisions = 64;
-
-      return new THREE.PolarGridHelper(radius, radials, circles, divisions);
-    };
-
-// inh radians
-    var helperA = polarHelper();
-var helperB = polarHelper().rotateX(Math.PI/2);
-// helperB.material.
-    var helperC = polarHelper();
-var helperC = polarHelper().rotateZ(Math.PI/2);
-
     scene.add(arrowHelper);
-    scene.add(helperA);
-    scene.add(helperB);
-    scene.add(helperC);
+
+
+    gimbal(scene);
+
 
     var sphereSize = 1;
 
@@ -89,7 +75,6 @@ var helperC = polarHelper().rotateZ(Math.PI/2);
 
     animate();
   }
-
   render() {
     return (
       <div>
