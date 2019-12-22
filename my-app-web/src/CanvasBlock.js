@@ -19,20 +19,20 @@ class CanvasBlock extends React.Component {
     document.body.appendChild(renderer.domElement);
 
     var geometry = new THREE.BoxGeometry(7, 3, 1);
-    var material = new THREE.MeshStandardMaterial({ color: 0x00ff00 });
+    var material = new THREE.MeshStandardMaterial({ color: 0x00ffff });
     var cube = new THREE.Mesh(geometry, material);
-    scene.add(cube);
+    // scene.add(cube);
 
     camera.position.z = 20;
 
-    var light = new THREE.AmbientLight(0xaaaaaa); // soft white light
+    var light = new THREE.AmbientLight(0x888888); // soft white light
     scene.add(light);
 
     var planeGeometry = new THREE.PlaneBufferGeometry(20, 20, 32, 32);
     var planeMaterial = new THREE.MeshStandardMaterial({ color: 0x00ff00 });
     var plane = new THREE.Mesh(planeGeometry, planeMaterial);
     plane.receiveShadow = true;
-    scene.add(plane);
+    // scene.add(plane);
 
     var material = new THREE.LineBasicMaterial({ color: 0x0000ff });
     var material1 = new THREE.LineBasicMaterial({ color: 0x11aaff });
@@ -53,6 +53,27 @@ class CanvasBlock extends React.Component {
     scene.add(line);
     scene.add(line1);
 
+var dir = new THREE.Vector3( 60, -160, 60 );
+
+//normalize the direction vector (convert to vector of length 1)
+dir.normalize();
+
+var origin = new THREE.Vector3( 0, 0, 0 );
+var length = 10;
+var hex = 0xffff00;
+
+var arrowHelper = new THREE.ArrowHelper( dir, origin, length, hex );
+scene.add( arrowHelper );
+
+var radius = 10;
+var radials = 16;
+var circles = 8;
+var divisions = 64;
+
+var helper = new THREE.PolarGridHelper( radius, radials, circles, divisions );
+scene.add( helper );
+
+
     var animate = function() {
       requestAnimationFrame(animate);
 
@@ -60,7 +81,8 @@ class CanvasBlock extends React.Component {
       cube.rotation.y += 0.01;
       line.rotation.x += 0.01;
       line.rotation.y += 0.01;
-      plane.rotation.y += 0.04;
+helper.rotation.x += 0.01
+      // plane.rotation.y += 0.04;
 
       renderer.render(scene, camera);
     };
