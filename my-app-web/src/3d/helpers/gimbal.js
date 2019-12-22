@@ -9,6 +9,44 @@ export const gimbal = scene => {
 
     return new THREE.PolarGridHelper(radius, radials, circles, divisions);
   };
+  var loader = new THREE.FontLoader();
+
+
+  loader.load("../../Ubuntu Mono_Regular.json", function(font) {
+var fontSettings = {
+      font: font,
+      size: 2,
+      height: 0.5,
+      curveSegments: 12,
+      bevelEnabled: true,
+      bevelThickness: 0.01,
+      bevelSize: 0.01,
+      bevelOffset: 0,
+      bevelSegments: 5
+    }
+    var geometryX = new THREE.TextGeometry("X", fontSettings );
+    var geometryY = new THREE.TextGeometry("Y", fontSettings );
+    var geometryZ = new THREE.TextGeometry("Z", fontSettings );
+// geometry.font( font);
+    var textMaterial = new THREE.MeshPhongMaterial({
+      color: 0xff0000,
+      specular: 0xffffff
+    });
+
+var meshX = new THREE.Mesh(geometryX, textMaterial);
+var meshY = new THREE.Mesh(geometryY, textMaterial);
+var meshZ = new THREE.Mesh(geometryZ, textMaterial);
+var txtDistance =10
+meshX.translateX(txtDistance)
+meshY.translateY(txtDistance)
+meshZ.translateZ(txtDistance)
+
+scene.add(meshX);
+
+    scene.add(meshY);
+    scene.add(meshZ);
+    // console.log(mesh);
+  });
 
   // inh radians
   var helperA = polarHelper();
@@ -19,6 +57,7 @@ export const gimbal = scene => {
   scene.add(helperA);
   scene.add(helperB);
   scene.add(helperC);
+  // scene.add(loader);
 };
 
 // export default { gimbal: gimbal };

@@ -18,7 +18,7 @@ class CanvasBlock extends React.Component {
       1.5,
       1000
     );
-    camera.position.z = 50;
+    camera.position.z =2100;
 
     //
     //renderer:
@@ -34,7 +34,6 @@ class CanvasBlock extends React.Component {
     //ambient light
 
     var light = new THREE.AmbientLight(0x888888); // soft white light
-    var dir = new THREE.Vector3(60, -160, 60);
 
     //lights
     var pointLight = new THREE.PointLight(0xffffff, 1, 100);
@@ -52,8 +51,9 @@ class CanvasBlock extends React.Component {
     scene.add(pointLight);
 
     //normalize the direction vector (convert to vector of length 1)
-    dir.normalize();
     //arrow helper
+    var dir = new THREE.Vector3(0, 60, 0);
+    dir.normalize();
     var origin = new THREE.Vector3(0, 0, 0);
     var length = 10;
     var hex = 0xffff00;
