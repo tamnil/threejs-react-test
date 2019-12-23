@@ -1,9 +1,8 @@
 import React from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-
-import {gimbal} from "./3d/helpers/gimbal"
-// const THREE = require("three");
+import { gimbal } from "./3d/helpers/gimbal";
+import Client from "./MqttClient"
 
 class CanvasBlock extends React.Component {
   constructor() {
@@ -13,12 +12,12 @@ class CanvasBlock extends React.Component {
 
     // setup camera
     var camera = new THREE.PerspectiveCamera(
-      15,
+      1500,
       window.innerWidth / window.innerHeight,
       1.5,
       1000
     );
-    camera.position.z =2100;
+    camera.position.z = 150;
 
     //
     //renderer:
@@ -52,7 +51,7 @@ class CanvasBlock extends React.Component {
 
     //normalize the direction vector (convert to vector of length 1)
     //arrow helper
-    var dir = new THREE.Vector3(0, 60, 0);
+    var dir = new THREE.Vector3(-60, -60, -60);
     dir.normalize();
     var origin = new THREE.Vector3(0, 0, 0);
     var length = 10;
@@ -61,14 +60,15 @@ class CanvasBlock extends React.Component {
     var arrowHelper = new THREE.ArrowHelper(dir, origin, length, hex);
     scene.add(arrowHelper);
 
-
     gimbal(scene);
-
 
     var sphereSize = 1;
 
     var animate = function() {
       requestAnimationFrame(animate);
+      // arrowHelper.rotation.x += 0.02;
+      // arrowHelper.rotation.y += 0.02;
+      // arrowHelper.rotation.z += 0.06;
 
       renderer.render(scene, camera);
     };
@@ -78,7 +78,6 @@ class CanvasBlock extends React.Component {
   render() {
     return (
       <div>
-        im on canvas
         <canvas id="mycanvas" />
       </div>
     );

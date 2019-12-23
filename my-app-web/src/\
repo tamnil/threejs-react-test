@@ -11,8 +11,9 @@ export const gimbal = scene => {
   };
   var loader = new THREE.FontLoader();
 
+
   loader.load("../../Ubuntu Mono_Regular.json", function(font) {
-    var fontSettings = {
+var fontSettings = {
       font: font,
       size: 1,
       height: 0.5,
@@ -22,11 +23,11 @@ export const gimbal = scene => {
       bevelSize: 0.01,
       bevelOffset: 0,
       bevelSegments: 5
-    };
-    var geometryX = new THREE.TextGeometry("+X", fontSettings);
-    var geometryY = new THREE.TextGeometry("+Y", fontSettings);
-    var geometryZ = new THREE.TextGeometry("+Z", fontSettings);
-    // geometry.font( font);
+    }
+    var geometryX = new THREE.TextGeometry("+X", fontSettings );
+    var geometryY = new THREE.TextGeometry("+Y", fontSettings );
+    var geometryZ = new THREE.TextGeometry("+Z", fontSettings );
+// geometry.font( font);
     var textMaterialX = new THREE.MeshPhongMaterial({
       color: 0x0000ff,
       specular: 0xffffff
@@ -42,15 +43,15 @@ export const gimbal = scene => {
       specular: 0xffffff
     });
 
-    var meshX = new THREE.Mesh(geometryX, textMaterialX);
-    var meshY = new THREE.Mesh(geometryY, textMaterialY);
-    var meshZ = new THREE.Mesh(geometryZ, textMaterialZ);
-    var txtDistance = 10;
-    meshX.translateX(txtDistance);
-    meshY.translateY(txtDistance);
-    meshZ.translateZ(txtDistance);
+var meshX = new THREE.Mesh(geometryX, textMaterialX);
+var meshY = new THREE.Mesh(geometryY, textMaterialY);
+var meshZ = new THREE.Mesh(geometryZ, textMaterialZ );
+var txtDistance =10
+meshX.translateX(txtDistance)
+meshY.translateY(txtDistance)
+meshZ.translateZ(txtDistance)
 
-    scene.add(meshX);
+scene.add(meshX);
 
     scene.add(meshY);
     scene.add(meshZ);
