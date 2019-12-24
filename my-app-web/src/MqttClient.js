@@ -1,16 +1,16 @@
 import * as Paho from "paho-mqtt";
 
 var location = {
-hostname: "tailor.cloudmqtt.com",
-port: "37946",
-path:"/",
+  hostname: "tailor.cloudmqtt.com",
+  port: "37946",
+  path: "/",
   clientId: "brws"
 };
 
 var client = new Paho.Client(
   location.hostname,
-Number(location.port),
-location.path,
+  Number(location.port),
+  location.path,
   location.clientId
 );
 
@@ -35,14 +35,12 @@ function onConnect() {
   var message = new Paho.Message("Hello");
   message.destinationName = "World";
   client.send(message);
-client.subscribe("teste/test");
-
-
+  client.subscribe("teste/test");
 }
 
-client.onMessageArrived = function (message) {
-  console.log("Message Arrived: " + message.payloadString);
-}
+client.onMessageArrived = function(message) {
+  console.log("Message Arriveda: " + message.payloadString);
+};
 // called when the client loses its connection
 function onConnectionLost(responseObject) {
   if (responseObject.errorCode !== 0) {
@@ -52,10 +50,7 @@ function onConnectionLost(responseObject) {
 
 // called when a message arrives
 function onMessageArrived(message) {
-  console.log("onMessageArrived:" + message.payloadString);
+  console.log("onMessageArriveda:" + message.payloadString);
 }
-
-
-
 
 export default client;

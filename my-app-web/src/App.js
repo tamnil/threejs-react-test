@@ -4,7 +4,6 @@ import React from "react";
 import "./App.css";
 import Sensors from "./Sensors";
 import CanvasBlock from "./CanvasBlock";
-import * as mqtt from "./MqttClient";
 
 function App() {
   return (
