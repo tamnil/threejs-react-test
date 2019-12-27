@@ -2,9 +2,8 @@ import React, {Component} from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { gimbal } from "./3d/helpers/gimbal";
-import Client from "./MqttClient"
 
-class CanvasBlock extends React.Component {
+class CanvasBlock extends Component {
   constructor() {
     super();
 
@@ -41,6 +40,7 @@ class CanvasBlock extends React.Component {
     pointLight.receiveShadow = false;
 
     // point light
+    var sphereSize = 1;
     var pointLightHelper = new THREE.PointLightHelper(pointLight, sphereSize);
 
     //  add lights
@@ -62,7 +62,6 @@ class CanvasBlock extends React.Component {
 
     gimbal(scene);
 
-    var sphereSize = 1;
 
     var animate = function() {
       requestAnimationFrame(animate);

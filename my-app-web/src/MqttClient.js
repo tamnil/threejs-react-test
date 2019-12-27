@@ -1,10 +1,12 @@
 import * as Paho from "paho-mqtt";
 
+const env = process.env
+
 var location = {
-  hostname: "tailor.cloudmqtt.com",
-  port: "37946",
-  path: "/",
-  clientId: "brws"
+  hostname:env.REACT_APP_MQTT_HOST,
+  port: env.REACT_APP_MQTT_PORT,
+  path: env.REACT_APP_MQTT_PATH,
+  clientId: env.REACT_APP_MQTT_CLIENTID
 };
 
 var client = new Paho.Client(
@@ -14,7 +16,6 @@ var client = new Paho.Client(
   location.clientId
 );
 
-console.log(client);
 
 // set callback handlers
 client.onConnectionLost = onConnectionLost;
@@ -23,8 +24,8 @@ client.onMessageArrived = onMessageArrived;
 // connect the client
 client.connect({
   useSSL: true,
-  userName: "tamnil",
-  password: "tamnil",
+  userName: env.REACT_APP_MQTT_USER,
+  password:env.REACT_APP_MQTT_PASSWORD,
   onSuccess: onConnect
 });
 
