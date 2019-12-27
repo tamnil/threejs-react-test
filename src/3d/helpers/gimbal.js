@@ -61,7 +61,7 @@ export const gimbal = scene => {
   var helperA = polarHelper();
   var helperB = polarHelper().rotateX(Math.PI / 2);
   // helperB.material.
-  var helperC = polarHelper();
+  // var helperC = polarHelper();
   var helperC = polarHelper().rotateZ(Math.PI / 2);
   scene.add(helperA);
   scene.add(helperB);

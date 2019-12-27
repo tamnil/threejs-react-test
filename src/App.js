@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import "./App.css";
 import Header from "./components";
@@ -8,7 +8,7 @@ import Sensors from "./Sensors";
 
 import store from "./store";
 
-import { gyroAddData, gyroAddDataX } from "./store";
+import { gyroAddData } from "./store";
 
 class App extends Component {
   constructor(props) {
@@ -44,7 +44,7 @@ console.log(process.env)
       <div className="App">
         <Header className="App-header" />
         <Sensors />
-        <input name="abc" type="text" value={store.getState().gyroVal.x} />
+        {/* <input name="abc" type="text" value={store.getState().gyroVal.x} /> */}
         <CanvasBlock />
       </div>
     );

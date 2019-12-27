@@ -29,6 +29,7 @@ class CanvasBlock extends Component {
     document.body.appendChild(renderer.domElement);
 
     var controls = new OrbitControls(camera, renderer.domElement);
+console.log(controls, 'orbit controls')
     //ambient light
 
     var light = new THREE.AmbientLight(0x888888); // soft white light
@@ -62,10 +63,6 @@ class CanvasBlock extends Component {
 
     gimbal(scene);
 
-
-    var sphereSize = 1;
-
-==== BASE ====
     var animate = function() {
       requestAnimationFrame(animate);
       // arrowHelper.rotation.x += 0.02;

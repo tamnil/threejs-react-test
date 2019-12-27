@@ -1,6 +1,6 @@
-import React, { Component, dispatch } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 
 class Header extends Component {
   static propTypes = {};

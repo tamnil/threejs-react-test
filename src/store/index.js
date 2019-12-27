@@ -1,5 +1,5 @@
-import { createStore, applyMiddleware, compose } from "redux";
-import thunk from "redux-thunk";
+import { createStore, compose } from "redux";
+// import thunk from "redux-thunk";
 import { combineReducers } from "redux";
 
 //
@@ -54,7 +54,7 @@ const rootReducer = combineReducers({
   gyroVal
 });
 
-const middleware = [thunk];
+// const middleware = [thunk];
 if (process.env.NODE_ENV !== "production") {
   // middleware.push(createLogger())
 }
