@@ -1,36 +1,58 @@
-import React from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import "./App.css";
-import Sensors from "./Sensors";
+import Header from "./components";
 import CanvasBlock from "./CanvasBlock";
+import Sensors from "./Sensors";
 
-import { createStore } from "redux";
+import store from "./store";
 
-function todos(state = [], action) {
-  switch (action.type) {
-    case "ADD_TODO":
-      return state.concat([action.text + "asdfsdf"]);
-    default:
-      return state;
+import { gyroAddData, gyroAddDataX } from "./store";
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      x: 0
+    };
+
+    store.subscribe(() => {
+      this.setState({
+        x: store.getState().x
+      });
+    });
+  }
+  static propTypes = {
+    // dispatch: PropTypes.func.isRequired
+  };
+
+  componentDidMount() {
+    //testing store integration
+    console.log(
+      store.dispatch(gyroAddData(20, 30, 50), gyroAddData),
+    );
+  }
+
+  componentDidUpdate(prevProps) {}
+
+  render() {
+    // function App() {
+    return (
+      <div className="App">
+        <Header className="App-header" />
+        <Sensors />
+        <input name="abc" type="text" value={store.getState().gyroVal.x} />
+        <CanvasBlock />
+      </div>
+    );
   }
 }
 
-
-const store = createStore(todos, ["Use Redux"]);
-store.dispatch({
-  type: "ADD_TODO",
-  text: "Read the docs"
-});
-console.log(store.getState());
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header"></header>
-      <Sensors />
-      <CanvasBlock />
-    </div>
-  );
+function mapStateToProps(state) {
+  const { todos } = state;
+  return { todoList: todos };
 }
 
-console.log();
-
-export default App;
+export default connect(mapStateToProps)(App);
