@@ -6,6 +6,8 @@ import Header from "./components";
 import CanvasBlock from "./CanvasBlock";
 import Sensors from "./Sensors";
 
+import client from "./MqttClient"
+
 import store from "./store";
 
 import { gyroAddData } from "./store";

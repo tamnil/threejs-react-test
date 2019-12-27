@@ -1,13 +1,20 @@
 import * as THREE from "three";
 
 export const gimbal = scene => {
-  const polarHelper = () => {
+  const polarHelper = (color1 = 0x555555, color2 = 0x999999) => {
     var radius = 10;
     var radials = 16;
     var circles = 8;
     var divisions = 64;
 
-    return new THREE.PolarGridHelper(radius, radials, circles, divisions);
+    return new THREE.PolarGridHelper(
+      radius,
+      radials,
+      circles,
+      divisions,
+      color1,
+      color2
+    );
   };
   var loader = new THREE.FontLoader();
 
@@ -58,14 +65,14 @@ export const gimbal = scene => {
   });
 
   // inh radians
-  var helperA = polarHelper();
-  var helperB = polarHelper().rotateX(Math.PI / 2);
-  // helperB.material.
-  // var helperC = polarHelper();
-  var helperC = polarHelper().rotateZ(Math.PI / 2);
-  scene.add(helperA);
-  scene.add(helperB);
-  scene.add(helperC);
+  var helperY = polarHelper(0x115511, 0x11aa11);
+  var helperZ = polarHelper(0x551111, 0xaa1111).rotateX(Math.PI / 2);
+  var helperX = polarHelper(0x111155, 0x1111aa).rotateZ(Math.PI / 2);
+
+
+  scene.add(helperY);
+  scene.add(helperZ);
+  scene.add(helperX);
   // scene.add(loader);
 };
 

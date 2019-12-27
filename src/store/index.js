@@ -1,6 +1,7 @@
-import { createStore, compose } from "redux";
-// import thunk from "redux-thunk";
+import { createStore, compose, applyMiddleware } from "redux";
+import createSagaMiddleware from 'redux-saga'
 import { combineReducers } from "redux";
+import { helloSaga } from '../sagas'
 
 //
 //action
@@ -54,18 +55,28 @@ const rootReducer = combineReducers({
   gyroVal
 });
 
+const sagaMiddleware = createSagaMiddleware()
+
+
 // const middleware = [thunk];
 if (process.env.NODE_ENV !== "production") {
   // middleware.push(createLogger())
 }
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 export const store = createStore(
   rootReducer,
-  compose(
+    // applyMiddleware(sagaMiddleware),
+  composeEnhancers(
     // applyMiddleware(...middleware),
+    applyMiddleware(sagaMiddleware),
     // window.devToolsExtension ? window.devToolsExtension() : f => f
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+// composeEnhancers
   )
 );
+
+sagaMiddleware.run(helloSaga)
 
 export default store;

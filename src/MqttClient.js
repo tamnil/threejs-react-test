@@ -1,5 +1,8 @@
 import * as Paho from "paho-mqtt";
 
+
+
+console.log('mqtt init')
 const env = process.env
 
 var location = {
