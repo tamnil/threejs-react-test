@@ -30,9 +30,10 @@ class App extends Component {
 
   componentDidMount() {
     //testing store integration
-    console.log(
-      store.dispatch(gyroAddData(20, 30, 50), gyroAddData),
-    );
+    console.log(store.dispatch(gyroAddData(20, 30, 50), gyroAddData));
+
+console.log(process.env)
+
   }
 
   componentDidUpdate(prevProps) {}

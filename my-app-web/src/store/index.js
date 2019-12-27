@@ -21,11 +21,9 @@ export const gyroAddData = (x, y, z) => ({
   sec: x + y + z
 });
 
-export const gyroAddDataX = (x,y,z) => ({
+export const gyroAddDataX = (x) => ({
   type: GYRO_DATA_X,
   x,
-  y,
-  z,
 });
 
 export const accelData = data => ({
