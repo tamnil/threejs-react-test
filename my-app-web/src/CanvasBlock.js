@@ -63,6 +63,9 @@ class CanvasBlock extends Component {
     gimbal(scene);
 
 
+    var sphereSize = 1;
+
+==== BASE ====
     var animate = function() {
       requestAnimationFrame(animate);
       // arrowHelper.rotation.x += 0.02;
