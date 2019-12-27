@@ -1,5 +1,7 @@
 import * as Paho from "paho-mqtt";
 
+import store, {gyroAddData} from './store'
+
 
 
 console.log('mqtt init')
@@ -43,7 +45,12 @@ function onConnect() {
 }
 
 client.onMessageArrived = function(message) {
-  console.log("Message Arriveda: " + message.payloadString);
+console.log("Message Arriveda: " + message.payloadString);
+let payload = JSON.parse(message.payloadString)
+
+store.dispatch(gyroAddData(payload.x,payload.y,payload.z))
+
+
 };
 // called when the client loses its connection
 function onConnectionLost(responseObject) {

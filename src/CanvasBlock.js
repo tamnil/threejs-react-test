@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { gimbal } from "./3d/helpers/gimbal";
+import store from './store'
 
 class CanvasBlock extends Component {
   constructor() {
@@ -65,9 +66,13 @@ console.log(controls, 'orbit controls')
 
     var animate = function() {
       requestAnimationFrame(animate);
-      // arrowHelper.rotation.x += 0.02;
-      // arrowHelper.rotation.y += 0.02;
-      // arrowHelper.rotation.z += 0.06;
+      // arrowHelper.rotation.x = store.getState().x;
+let valX = Number(store.getState().gyroVal.x)*Math.PI/180
+let valY = Number(store.getState().gyroVal.y)*Math.PI/180
+let valZ = Number(store.getState().gyroVal.z)*Math.PI/180
+      arrowHelper.rotation.x = valX;
+      arrowHelper.rotation.y =valY;
+      arrowHelper.rotation.z = valZ;
 
       renderer.render(scene, camera);
     };
