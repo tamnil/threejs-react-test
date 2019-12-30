@@ -2,11 +2,18 @@
 
 Tamnil Saito Junior(temnil@gmail.com)
 
-Testing threejs(webGL) + web protocols and iot integrations
+Testing/ Benchmarking and data analysis
+
+threejs(webGL) + web protocols and iot integrations
 
 ### current development:
 sensor on external development:  esp32 + mpu6050 + QMC588
 
+
+### partial results:
+
+- 3rs party subscription - cloud mqtt: 100ms/single request ; 300ms/ double request (from microcontroller)
+note: first tests sending data to cloud MQTT - browser didnt received the messages from subscribed topic  - 30-12-2019
 
 
 Use HTTPS  to work with websensors and sockets
