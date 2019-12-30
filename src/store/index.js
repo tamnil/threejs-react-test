@@ -67,13 +67,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export const store = createStore(
   rootReducer,
-    // applyMiddleware(sagaMiddleware),
   composeEnhancers(
-    // applyMiddleware(...middleware),
     applyMiddleware(sagaMiddleware),
-    // window.devToolsExtension ? window.devToolsExtension() : f => f
-    // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-// composeEnhancers
   )
 );
 

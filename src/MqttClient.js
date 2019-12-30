@@ -1,14 +1,12 @@
 import * as Paho from "paho-mqtt";
 
-import store, {gyroAddData} from './store'
+import store, { gyroAddData } from "./store";
 
-
-
-console.log('mqtt init')
-const env = process.env
+console.log("mqtt init");
+const env = process.env;
 
 var location = {
-  hostname:env.REACT_APP_MQTT_HOST,
+  hostname: env.REACT_APP_MQTT_HOST,
   port: env.REACT_APP_MQTT_PORT,
   path: env.REACT_APP_MQTT_PATH,
   clientId: env.REACT_APP_MQTT_CLIENTID
@@ -21,7 +19,6 @@ var client = new Paho.Client(
   location.clientId
 );
 
-
 // set callback handlers
 client.onConnectionLost = onConnectionLost;
 client.onMessageArrived = onMessageArrived;
@@ -30,7 +27,7 @@ client.onMessageArrived = onMessageArrived;
 client.connect({
   useSSL: true,
   userName: env.REACT_APP_MQTT_USER,
-  password:env.REACT_APP_MQTT_PASSWORD,
+  password: env.REACT_APP_MQTT_PASSWORD,
   onSuccess: onConnect
 });
 
@@ -45,12 +42,10 @@ function onConnect() {
 }
 
 client.onMessageArrived = function(message) {
-console.log("Message Arriveda: " + message.payloadString);
-let payload = JSON.parse(message.payloadString)
+  console.log("Message Arriveda: " + message.payloadString);
+  let payload = JSON.parse(message.payloadString);
 
-store.dispatch(gyroAddData(payload.x,payload.y,payload.z))
-
-
+  store.dispatch(gyroAddData(payload.x, payload.y, payload.z));
 };
 // called when the client loses its connection
 function onConnectionLost(responseObject) {
