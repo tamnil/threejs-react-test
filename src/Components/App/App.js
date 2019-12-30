@@ -6,7 +6,7 @@ import Header from "../Header";
 import CanvasBlock from "../CanvasBlock/CanvasBlock";
 import Sensors from "../../Lib/Sensors";
 
-import client from "../../Lib/MqttClient"
+import client from "../../Lib/MqttClient";
 
 import store from "../../Lib/Store";
 
@@ -32,10 +32,7 @@ class App extends Component {
 
   componentDidMount() {
     //testing store integration
-    console.log(store.dispatch(gyroAddData(20, 30, 50), gyroAddData));
-
-console.log(process.env)
-
+    // console.log(store.dispatch(gyroAddData(20, 30, 50), gyroAddData));
   }
 
   componentDidUpdate(prevProps) {}

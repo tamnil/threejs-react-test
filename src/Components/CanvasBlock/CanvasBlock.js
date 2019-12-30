@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { gimbal } from "../../Lib/3d/helpers/gimbal";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import store from '../../Lib/Store'
 
 class CanvasBlock extends Component {
