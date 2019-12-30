@@ -2,15 +2,15 @@ import React, { Component } from "react";
 // import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import "./App.css";
-import Header from "./components";
-import CanvasBlock from "./CanvasBlock";
-import Sensors from "./Sensors";
+import Header from "../Header";
+import CanvasBlock from "../CanvasBlock/CanvasBlock";
+import Sensors from "../../Lib/Sensors";
 
-import client from "./MqttClient"
+import client from "../../Lib/MqttClient"
 
-import store from "./store";
+import store from "../../Lib/Store";
 
-import { gyroAddData } from "./store";
+import { gyroAddData } from "../../Lib/Store";
 
 class App extends Component {
   constructor(props) {

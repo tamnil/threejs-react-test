@@ -1,10 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
-import * as serviceWorker from "./serviceWorker";
-import {  store } from "./store";
+
 import { Provider } from "react-redux";
+import "./index.css";
+import App from "./Components/App/App";
+import * as serviceWorker from "./serviceWorker";
+import { store } from "./Lib/Store";
 // import { createLogger } from "redux-logger";
 
 ReactDOM.render(

@@ -1,6 +1,6 @@
 import * as Paho from "paho-mqtt";
 
-import store, { gyroAddData } from "./store";
+import store, { gyroAddData } from "../Store";
 
 console.log("mqtt init");
 const env = process.env;
