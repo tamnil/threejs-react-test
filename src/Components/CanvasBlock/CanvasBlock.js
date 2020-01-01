@@ -30,7 +30,6 @@ class CanvasBlock extends Component {
     document.body.appendChild(renderer.domElement);
 
     var controls = new OrbitControls(camera, renderer.domElement);
-console.log(controls, 'orbit controls')
     //ambient light
 
     var light = new THREE.AmbientLight(0x888888); // soft white light
